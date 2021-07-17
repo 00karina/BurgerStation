@@ -1,0 +1,107 @@
+{% load static%}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">   
+     <link rel="stylesheet" href="{% static "css/styless.css" %}">
+     
+{% load cart %}
+<div id="navbars" style="
+  font-family: sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  ">
+ <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-lg">
+ 
+  <a class="navbar-brand" href="#" style=" color: black;">BurgerStation</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+     
+      <li class="nav-item mr-5" >
+        <a class="nav-link" style=" color: black"  href="/order">Order</a>
+      </li>
+
+      <li class="nav-item mr-5" >
+        <a class="nav-link" style=" color: black;margin-right:5rem" href="/logout">Logout</a>
+      </li>
+    
+      </ul>
+  </div>
+ </nav>
+</div>
+</head>
+
+
+<div class="container ">
+   <div class="border rounded p-4 m-4 shadow-lg">
+        <p class="display-4 pl-4 ml-4 text-center " style='font-family:Rancho;color:orange'> Cart </p>
+
+        <hr>
+        <table class="table table-striped shadow-lg">
+            <thead>
+                <tr>
+                   <th>S.No</th>
+                   <th>Food</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+           <tbody>
+        
+            {% for food in foods%}
+            <tr>
+            
+            <td>{{ forloop.counter }}</td>
+            <td><img class="rounded-circle " height="80px" width="100px"  src={{food.img.url}}></td>
+            <td>{{food.name}} </td>
+            <td>{{food.price|dollar}} </td>
+            <td>{{food|card_quantity:request.session.cart}} </td>
+            
+            <td>{{food|total:request.session.cart|dollar}} </td>
+            </tr>
+            {% endfor %}
+             </tbody>
+
+            <tfoot>
+                <tr>
+                    <th colspan="4"></th>
+                    <th class="" colspan="">Total</th>
+                    <td>{{food|total_cart_price:request.session.cart|dollar}}<td>
+                  
+                    
+                </tr>
+
+              
+            </tfoot>
+            
+             </table>
+             <div class="row ">
+             <div class="col-md-6 text-center mt-3">
+            <a class="btn buttons" href="/#menu" role="button">Continue Shopping</a>
+            </div>
+             <!-- Button trigger modal -->
+            <div class="col-md-6 text-center mt-3">
+             <form action="checkout" method="post">
+               {% csrf_token %}
+           <input type="submit" class="btn buttons" value="CheckOut" ></button>
+            <form>
+           </div>
+            </div>
+
+
+           
+
+

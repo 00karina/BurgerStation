@@ -1,0 +1,53 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <script src="{% static "js/signup.js" %}"> </script>
+     <link rel="stylesheet" href="{% static "css/signup.css" %}">
+     </head>
+
+  <body>
+  	<div class="main-w3layouts wrapper">
+		<h1>Create an Account</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+			
+				<form  action="login" method="post">
+				{% csrf_token %}
+					
+					<input type="text" name="username" placeholder="username"><br>
+        <input type="password" name="password" placeholder="password"><br>
+					
+					
+					<input type="submit" value="SIGNUP">
+				</form>
+				<div>
+            {% for message in messages %}
+            <h3> {{message}}  </h3>
+            {% endfor %}
+    </div>
+				
+			</div>
+		</div>
+		
+		<!-- //copyright -->
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+  </body>
+  </html>
+  

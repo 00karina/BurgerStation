@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#navbar {
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0px 1px 10px #999;
+
+  position: fixed;
+  width: 100%;
+  transition: top 0.3s;
+  position: fixed;
+  z-index: 1;
+}
+.bor {
+  border: 1px solid black;
+}
+#navbar a {
+  color: black;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#Home {
+  background: url("/static/image/b.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+#Home h1 {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 45px;
+  font-family: sans-serif;
+}
+#Home .btn {
+  color: white;
+  background-color: #cc5500;
+  border: none;
+  cursor: pointer;
+}
+#Home .btn:hover {
+  border: 2px solid white;
+}
+
+@media only screen and (max-width: 600px) {
+  #Home p {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  #Home h1 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+  #Home .btn {
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+}
+
+@media screen and (device-aspect-ratio: 40 / 71) {
+  #Home .btn {
+    margin-left: 10px;
+  }
+  #Home h1 {
+    padding: 5px;
+  }
+  #Home p {
+    padding: 5px;
+  }
+  img {
+    height: 600px;
+    width: 500px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #Home p {
+    padding-bottom: -50px;
+  }
+}
+/*# sourceMappingURL=styles.css.map */
+#whyus p {
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: semi-bold;
+  padding-top: 8px;
+}
+
+.buttons {
+  color: white;
+  background-color: #ff9f43;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+}
+.card-text {
+  font-family: Roboto Slab;
+  opacity: 74%;
+  text-align: justify;
+}
+.card-title {
+  font-family: sans-serif;
+}

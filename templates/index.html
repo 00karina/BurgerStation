@@ -1,0 +1,339 @@
+{% load static %}
+{% load cart %}
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="{% static "css/styless.css" %}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script src="{% static "js/styles.js" %}"> </script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Rancho&display=swap" rel="stylesheet">
+   {% block title  %}<title>BurgerStation</title>{% endblock title %}
+  </head>
+  <body>
+    <div id="navbar">
+      <nav class="navbar navbar-expand-lg sticky-top bg-white">
+        <a class="navbar-brand" href="#">BurgerStation</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              {% if user.is_authenticated %}
+                <li class="nav-item mr-2" >
+                 <a class="nav-link" style=" color: black"  href="/order">Order</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+                </li>
+              {% else %}
+                <li class="nav-item mr-2">
+                  <a class="nav-link" href="/signup">SignUp</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="/login">login</a>
+                </li>
+              {% endif %}
+                <a href="/cart">
+                  <span class="fa fa-shopping-cart" style="font-size:25px;margin-left:15px"></span><small><span class="badge badge-pill badge-danger" style="margin-right:40px">{{request.session.cart.keys|length}}</small></span> 
+              </a>
+            </ul>
+         </div>
+      </nav>
+   </div>
+    {% block body %}
+      <div id="Home" style="height: 700px ">
+        <br/><br/><br/><br/><br/><br/>
+          <div class="container text-center ">
+            <h5 style="color:white;margin-top:3rem;margin-right:28rem;font-family:Rancho">Satisfy your cravings </h5>
+              <h1 class="text-center" style='font-size:80px;font-family:Rancho'>Welcome to Burger Station</h1>
+               <div class="row  " style="">
+                  <a class="btn btn-primary  pl-3 pr-3" href="#menu" role="button" style="margin-left:15.5rem;font-size:20px">Menu</a>
+                  <a class="btn btn-primary  pl-3 pr-3" href="#contact" role="button"  style="margin-left:5rem;font-size:20px">Home Delivery</a>
+                 
+               </div>
+           </div>
+      </div>
+      <div id="whyus" class="container col-lg-8 col-8    mt-4 ">
+        <br> <br> <br> 
+        <h1 class="text-center" style='color:#cc5500;font-family:Rancho;' >Why Choose Us</h1>
+        <br>
+        <div class="row mt-4" >
+          <div class="col-lg-4 images" >
+            <img src= "{% static 'image/fast.jpg' %}" class="rounded-circle mx-auto d-block text-center " alt="Quick Service" width="170px"height="170px" style='border:3px solid #FF9F43;box-shadow: 3px 7px grey;'></img>
+              <p class="text-center" >Quick Service</p>
+          </div>
+          <div class="col-lg-4 images">
+            <img src= "{% static 'image/healthy.jpg' %}" class="rounded-circle mx-auto d-block" alt="Healthy food" width="190px"height="170px" style='border:3px solid #FF9F43;box-shadow: 3px 7px grey;'>
+              <p class="text-center">Organic Food</p>
+          </div>
+          <div class="col-lg-4 images">
+            <img src= "{% static 'image/affort.png' %}" class="rounded-circle mx-auto d-block" alt="Affortable prize" width="160px"height="160px" style='border:3px solid #FF9F43; box-shadow: 3px 7px grey;'>
+              <p class="text-center">Affortable Price</p>   
+          </div>
+        </div><br> <br> <br> <br> <br> <br>
+     </div>
+     <div id="menu"  >
+      <h1 class="text-center"style='color:#cc5500;font-family:Rancho'>Check our Delicious Menu</h1>
+        <br> <br> <br>
+          <div class="container-fluid">
+	          <div class="row ml-4 mr-4">
+              <br> <br>
+                <div class="col-lg-2 mb-5 ">
+                  <div class="list-group">
+                    <a href="/#menu" class="list-group-item list-group-item-warning" >All Food Item</a>
+                      {% for category in categories %}
+                        <a href="/?category={{category.id}}#menu"class="list-group-item list-group-item-action">{{category.name}}</a>
+                      {% endfor %}
+                  </div>
+                </div>
+                <div id='foods' class="col-lg-10 ">
+	                <div class="row mx-auto ">
+                    {% for food in foods %}
+                      <div class="card shadow-lg col-md-3 ml-3 mr-4 mb-5"  id={{food.id}} ">
+                        <img src="{{food.img.url}}" class="d-block " height='210px' width='270px'>
+                          <p class="card-title text-center"><strong>{{food.name}}</strong></p>
+                            <div class="card-body">
+                              <div class="text-center">
+                                <p class="card-text">{{food.desc}}</p>
+                                <p class="card-text text-center mb-3 mt-3">{{food.price}}$</p> 
+                             </div>
+                            </div>
+
+                            <div class="card-footer p-0 no-gutters ">
+                              {% if food|is_in_cart:request.session.cart %}
+                                <div class="row no-gutters">
+                                  <form action="/#{{food.id}}" method="post" class="col-2">
+                                    {% csrf_token %}
+                                    <input hidden  type="text" name="food" value='{{food.id}}'>
+                                    <input hidden  type="text" name="remove" value='True'>
+                                    <input type="submit" value=" - " class=" btn buttons pb-2  ">
+                                  </form>
+                                  <div class="text-center col mt-3 "><strong>{{food|card_quantity:request.session.cart}}</strong></div>
+                                    <form action="/#{{food.id}}" method="post" class="col-2 ">
+                                      {% csrf_token %}
+                                      <input hidden  type="text" name="food"  value='{{food.id}}'>
+                                      <input type="submit" value=" + " class=" btn  buttons pb-2 ">
+                                    </form>
+                                  </div>
+                              {% else %}
+                                <div class="text-center">
+                                  <form action="/#{{food.id}}" method='POST'>
+                                    {% csrf_token %}
+                                    <input hidden  type="text" name="food"  value='{{food.id}}'>
+                                    <input type='submit' class="buttons pb-2" value="    Add To Cart    ">
+                                  </form>
+                                </div>
+                              {% endif %}  
+                            </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div id="banner" style="background-image: url('{% static "image/banner.jpg"%}'); height:900px ; background-repeat: no-repeat; background-attachment: fixed;;background-size:100% ;";>
+        <h1 class="text-center mb-3 col-6" style="color:white;padding-top:170px ;font-family:sans-serif ;text-shadow: 1px 1px 2px black, 0 0 25px grey, 0 0 10px orange;;">We are Happy to Serve</h1>
+            <p class=" col-6  ml-5 mt-4" style="color:white;">lorem Lorem Ipsum is simply  dummy text of the printing and typesetting industry. Lorem Ipsum has been the ndustry'
+              standard dummy text ever since the 1500s, when an unknown prter took a galley of type and scrinto electronic typeset remaining 
+              essentially unchanged. It was popularised in the 1960s with the release.Lorem Ipsum has been the ndustry'
+              standard dummy text ever since the 1500s.When an unknown prter took a galley of type and scrinto electronic typeset remaining 
+              essentially unchanged. It was popularised in the 1960s.It was popularised in the 1960s with the release.Lorem Ipsum has been the ndustry'
+              standard dummy text ever since the 1500s.When an unknown prter took a galley of type and scrinto electronic typeset remaining 
+              essentially unchanged. It was popularised in the 1960s
+            </p>
+      </div>
+    
+    <div id="contact" class="container-fluid">
+    <br>
+    <br>
+    <br>
+    <form>
+      <h1>Contact Us</h1>
+      <div class="contentform">
+        <div class="leftcontact">
+            <div class="form-group">
+              <p>Name <span>*</span></p>
+              <span class="icon-case"><i class="fa fa-user"></i></span>
+              <input type="text" data-rule="required">
+            </div>
+            <div class="form-group">
+             <p>E-mail <span>*</span></p>  
+              <span class="icon-case"><i class="fa fa-envelope-o"></i></span>
+              <input type="email" name="email" id="email" data-rule="email"/>
+            </div>  
+            <div class="form-group">
+              <p> Address <span>*</span></p>
+              <span class="icon-case"><i class="fa fa-location-arrow"></i></span>
+              <input type="text" name="adresse" id="address" data-rule="required"/>
+            </div>
+         </div>
+        <div class="rightcontact">  
+          <div class="form-group">
+            <p>City <span>*</span></p>
+            <span class="icon-case"><i class="fa fa-building-o"></i></span>
+            <input type="text" name="city"/>
+          </div>  
+          <div class="form-group">
+            <p>Phone number <span>*</span></p>  
+            <span class="icon-case"><i class="fa fa-phone"></i></span>
+            <input type="text" name="phone" id="phone" />
+          </div>
+          <div class="form-group" id="message">
+            <p>Message</p>
+            <span class="icon-case"><i class="fa fa-comments-o"></i></span>
+            <textarea name="message" rows="14"></textarea>
+          </div>
+        </div>
+     </div>
+     <button type="submit" class="button-contact">Send</button>
+    </form> 
+      </div>
+    </div>
+    </div>
+  {% endblock body %}
+</html>
+
+
+
+
+
+
+
+   <style>
+html {
+  scroll-behavior: smooth;
+}
+
+form h1 {
+  font-size: 18px;
+  background: #ffa343;
+  color: rgb(255, 255, 255);
+  padding: 22px 25px;
+  border-radius: 5px 5px 0px 0px;
+  margin: auto;
+  text-shadow: none; 
+  text-align:center;
+}
+
+form {
+  border-radius:5px;
+  max-width:900px;
+  width:100%;
+  margin: 5% auto;
+  background-color:white;
+  overflow: hidden;
+}
+
+p span {
+  color: #F00;
+}
+
+p {
+  margin: 0px;
+  font-weight: 500;
+  line-height: 2;
+  color:#333;
+}
+
+ form h1 {
+  text-align:center; 
+  color:white;
+  
+  margin:50px 0px 0px 0px
+}
+
+ .contact input {
+  border-radius: 0px 5px 5px 0px;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  width: 75%;
+  height: 40px;
+  float: left;
+  padding: 0px 15px;
+}
+
+a {
+  text-decoration:inherit
+}
+ textarea {
+  border-radius: 0px 5px 5px 0px;
+  border: 1px solid #EEE;
+  margin: 0;
+  width: 50%;
+  height: 70px; 
+  float: left;
+  padding: 0px 15px;
+}
+
+.form-group {
+  overflow: hidden;
+  clear: both;
+}
+
+.icon-case {
+  width: 35px;
+  float: left;
+  border-radius: 5px 0px 0px 5px;
+  background:#eeeeee;
+  height:42px;
+  position: relative;
+  text-align: center;
+  line-height:40px;
+}
+
+
+.contentform {
+  padding: 40px 30px;
+}
+
+.button-contact{
+  background-color:#ffa343;
+  color: #FFF;
+  text-align: center;
+  width: 100%;
+  border:0;
+  padding: 17px 25px;
+  border-radius: 0px 0px 5px 5px;
+  cursor: pointer;
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+.leftcontact {
+  width:49.5%; 
+  float:left;
+  border-right: 1px dotted #CCC;
+  box-sizing: border-box;
+  padding: 0px 15px 0px 0px;
+}
+
+.rightcontact {
+  width:49.5%;
+  float:right;
+  box-sizing: border-box;
+  padding: 0px 0px 0px 15px;
+}
+@media (max-width:576px) {
+  html{
+    font-size: 80%;
+  }
+  
+  #foot{
+    font-size: 11px;
+  }
+  #foot h2,p{
+    text-align: center;
+    padding-bottom: 3px;
+  }
+}
+  </style>
+ 
